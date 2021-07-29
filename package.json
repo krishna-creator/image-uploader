@@ -1,0 +1,30 @@
+{
+  "name": "image-uploader",
+  "version": "1.0.0",
+  "description": "Simple application for image uploading",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krishna-creator/image-uploader.git"
+  },
+  "author": "Krishna-creator",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krishna-creator/image-uploader/issues"
+  },
+  "homepage": "https://github.com/krishna-creator/image-uploader#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "multer": "^1.4.2",
+    "multer-gridfs-storage": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
