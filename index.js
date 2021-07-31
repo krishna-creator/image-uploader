@@ -65,7 +65,7 @@ app.post("/", upload.single("img"), (req, res) => {
   images
     .create(obj)
     .then((result) => {
-      res.redirect("/gallery.html");
+      res.end();
     })
     .catch((err) => {
       console.log(err);

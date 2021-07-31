@@ -8,29 +8,29 @@
     <title>Document</title>
   </head>
   <body>
+    <span id="msg">text copied</span>
     <div class="row">
       <div class="col">
-        <form
-          id="card"
-          class="card"
-          action="/"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <h3>Upload your image</h3>
-          <small>File should be Jpeg,Png...</small><br />
-          <div id="dragarea">
-            <img src="./image.svg" draggable="false" alt="" /><span
-              >Drag & Drop your image here</span
-            >
-          </div>
-          <br />
-          or<br />
-          <input hidden type="file" name="img" id="img" /><br />
-          <label class="btn" for="img">Choose File</label>
-        </form>
+        <div id="card" class="card">
+          <form method="POST" enctype="multipart/form-data">
+            <h3>Upload your image</h3>
+            <small>File should be Jpeg,Png...</small>
+            <p></p>
+            <div id="dragarea">
+              <img src="./image.svg" draggable="false" alt="" /><span
+                style="font-size: 12px"
+                >Drag & Drop your image here</span
+              >
+            </div>
+            <br />
+            or<br />
+            <input hidden type="file" name="img" id="img" /><br />
+            <label id="label" class="btn" for="img">Choose a File</label>
+          </form>
+        </div>
       </div>
     </div>
+    <h2 style="text-align: center; margin-top: 3em" id="galleryheader"></h2>
     <div id="container"></div>
     <script src="script.js"></script>
   </body>

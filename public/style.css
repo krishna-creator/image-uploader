@@ -53,7 +53,7 @@ h3 {
   margin-block-end: 1em;
 }
 #dragarea {
-  padding: 2em;
+  padding: 2.5em;
   opacity: 0.6;
   text-align: center;
   display: flex;
@@ -72,6 +72,94 @@ h3 {
   margin-right: auto;
   width: 50%;
 }
+.progress {
+  position: relative;
+  width: 200px;
+  height: 5px;
+  background-color: #ccc;
+  margin-top: 15px;
+  border-radius: 12px;
+}
+.progress::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 66px;
+  height: 5px;
+  border-radius: 12px;
+  background-color: #0d6efd;
+  animation: moving 1s ease infinite;
+}
+@keyframes moving {
+  100% {
+    left: 134px;
+  }
+}
+#contianer {
+  margin: 1.5em;
+  padding: 0;
+  column-gap: 1em;
+}
+.gallerycolumn {
+  display: inline-block;
+  background: #fff;
+  padding: 0.3em;
+  margin: 0 0 1.5em;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 4px 0 #ccc;
+}
+.gallerycolumn img {
+  max-width: 100%;
+}
+
+.check {
+  width: 35px;
+  height: 35px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.7em;
+}
+.linkc {
+  width: 338px;
+  height: 34px;
+  border-radius: 8px;
+  padding: 8px 7px;
+  background: #f6f8fb;
+  font-size: 8px;
+}
+.link {
+  word-wrap: normal;
+  color: #222;
+  border: 0px;
+  overflow: hidden;
+  width: 240px;
+  margin-right: 5px;
+}
+.button {
+  background: #0d6efd;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+}
+.preview {
+  width: 340px;
+  height: auto;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 8px;
+}
+#msg {
+  position: fixed;
+  padding: 1em;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background: #ff7979;
+  visibility: hidden;
+}
 /* @media (min-width: 768px) {
   .col {
     flex: 0 0 auto;
@@ -84,5 +172,34 @@ h3 {
   }
   .row {
     margin-top: 2em;
+  }
+}
+@media only screen and (max-width: 320px) {
+  #container {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  #container {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  #container {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  #container {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
   }
 }
