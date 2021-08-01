@@ -1,19 +1,17 @@
+//declaring packages
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
-const fs = require("fs");
-const images = require("./model/image");
 const multer = require("multer");
-const cors = require("cors");
-const { GridFsStorage } = require("multer-gridfs-storage");
+//declaring modules
+const images = require("./model/image");
 require("dotenv/config");
-const url = process.env.MONGO_URL;
 const app = express();
+//adding middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(cors());
 
+//connecting to the database
 var connection = mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,24 +20,7 @@ var connection = mongoose.connect(process.env.MONGO_URL, {
 connection
   .then(() => console.log("connected"))
   .catch((err) => console.log(err));
-
-// const storage = new GridFsStorage({
-//   db: connection,
-//   file: (req, file) => {
-//     const match = ["image/png", "image/jpeg"];
-
-//     if (match.indexOf(file.mimetype) === -1) {
-//       const filename = `${Date.now()}-any-name-${file.originalname}`;
-//       return filename;
-//     }
-
-//     return {
-//       bucketName: "photos",
-//       filename: `${Date.now()}-any-name-${file.originalname}`,
-//     };
-//   },
-// });
-
+//image storage
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./public/uploads");
@@ -49,6 +30,7 @@ var storage = multer.diskStorage({
   },
 });
 var upload = multer({ storage: storage });
+//display all images by get
 app.get("/images", (req, res) => {
   images
     .find({})
@@ -59,7 +41,7 @@ app.get("/images", (req, res) => {
       console.log(err);
     });
 });
-
+//store the image to the database
 app.post("/", upload.single("img"), (req, res) => {
   var obj = { img: req.file.filename };
   images

@@ -73,7 +73,7 @@ gallery = () => {
       result.json().then((result) => {
         container.innerHTML = result
           .map((obj) => {
-            return `<div class='gallerycolumn'><img src='uploads/${obj.img}' alt="image not found"></div>`;
+            return `<div class='gallerycolumn'><img src='uploads/${obj.img}' alt="image not found"></div>`; //single img
           })
           .join("");
       });
@@ -82,7 +82,7 @@ gallery = () => {
       console.log(err);
     });
 };
-
+//copying the text and display text copied
 copied = () => {
   var msg = document.getElementById("msg");
   var link = document.getElementById("link");
@@ -94,4 +94,4 @@ copied = () => {
     msg.style.visibility = "hidden";
   }, 1000);
 };
-gallery();
+gallery(); //calling the gallery function
