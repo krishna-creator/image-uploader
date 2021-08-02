@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const serverless = require("serverless-http");
 //declaring modules
 const images = require("./model/image");
 require("dotenv/config");
@@ -53,7 +54,7 @@ app.post("/", upload.single("img"), (req, res) => {
       console.log(err);
     });
 });
-
 app.listen(3000, () => {
   console.log("connected to server");
 });
+// module.exports.handler = serverless(app);
