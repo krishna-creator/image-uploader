@@ -73,7 +73,9 @@ gallery = () => {
       result.json().then((result) => {
         container.innerHTML = result
           .map((obj) => {
-            return `<div class='gallerycolumn'><img src='uploads/${obj.img}' alt="image not found"></div>`; //single img
+            var decode = toBase64(obj.img.data.data);
+            var link = `data:image/${obj.contentType};base64,${decode}`;
+            return `<div class='gallerycolumn'><img src='${link}' alt="image not found"></div>`; //single img
           })
           .join("");
       });
@@ -81,6 +83,10 @@ gallery = () => {
     .catch((err) => {
       console.log(err);
     });
+};
+toBase64 = (arr) => {
+  //arr = new Uint8Array(arr) if it's an ArrayBuffer
+  return btoa(arr.reduce((data, byte) => data + String.fromCharCode(byte), ""));
 };
 //copying the text and display text copied
 copied = () => {

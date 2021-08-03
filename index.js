@@ -3,8 +3,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const serverless = require("serverless-http");
+const fs = require("fs");
+const path = require("path");
 //declaring modules
 const images = require("./model/image");
+const imagedata = require("./model/imagedata");
 require("dotenv/config");
 const app = express();
 //adding middleware
@@ -33,7 +36,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 //display all images by get
 app.get("/images", (req, res) => {
-  images
+  imagedata
     .find({})
     .then((result) => {
       res.json(result);
@@ -44,8 +47,15 @@ app.get("/images", (req, res) => {
 });
 //store the image to the database
 app.post("/", upload.single("img"), (req, res) => {
-  var obj = { img: req.file.filename };
-  images
+  var obj = {
+    img: {
+      data: fs.readFileSync(
+        path.join(__dirname + "/public/uploads/" + req.file.filename)
+      ),
+      contentType: req.file.mimetype,
+    },
+  };
+  imagedata
     .create(obj)
     .then((result) => {
       res.end();
